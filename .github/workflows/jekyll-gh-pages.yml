@@ -37,12 +37,14 @@ jobs:
 
       # Install dependencies (Jekyll, Bundler, etc.)
       - name: Install dependencies
+        working-directory: site
         run: |
           gem install bundler -v 2.4.22
           bundle _2.4.22_ install 
 
       # Build the Jekyll site
       - name: Build the site
+        working-directory: site
         run: |
            bundle _2.4.22_ exec jekyll build
 
@@ -51,5 +53,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.7.1
         with:
           branch: gh-pages  # The branch that GitHub Pages uses
-          folder: _site    # The folder where Jekyll generates the site
+          folder: site/_site   # The folder where Jekyll generates the site
 
