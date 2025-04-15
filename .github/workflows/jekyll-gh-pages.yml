@@ -53,7 +53,7 @@ jobs:
           bundle _2.4.22_ exec jekyll build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@vv4.7.3
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
            branch: gh-pages  # The branch that GitHub Pages uses
            folder: _site     # The folder where Jekyll generates the site
