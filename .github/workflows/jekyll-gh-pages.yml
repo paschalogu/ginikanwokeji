@@ -22,30 +22,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+      # Set up Ruby environment (required for Jekyll)
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7' # Choose your preferred Ruby version, recommended: 2.7
+
+      # Install dependencies (Jekyll, Bundler, etc.)
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      # Build the Jekyll site
+      - name: Build the site
+        run: |
+          bundle exec jekyll build
+
+      # Deploy to GitHub Pages (typically the gh-pages branch)
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4.1.0
+        with:
+          branch: gh-pages  # The branch that GitHub Pages uses
+          folder: _site    # The folder where Jekyll generates the site
+
