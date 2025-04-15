@@ -48,7 +48,7 @@ jobs:
 
       # Deploy to GitHub Pages (typically the gh-pages branch)
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.1.0
+        uses: JamesIves/github-pages-deploy-action@v4.7.1
         with:
           branch: gh-pages  # The branch that GitHub Pages uses
           folder: _site    # The folder where Jekyll generates the site
