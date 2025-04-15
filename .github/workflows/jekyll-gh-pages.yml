@@ -38,13 +38,13 @@ jobs:
       # Install dependencies (Jekyll, Bundler, etc.)
       - name: Install dependencies
         run: |
-          gem install bundler
-          bundle install
+          gem install bundler -v 2.4.22
+          bundle _2.4.22_ install 
 
       # Build the Jekyll site
       - name: Build the site
         run: |
-          bundle exec jekyll build
+           bundle _2.4.22_ exec jekyll build
 
       # Deploy to GitHub Pages (typically the gh-pages branch)
       - name: Deploy to GitHub Pages
